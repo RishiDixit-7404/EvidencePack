@@ -5,6 +5,11 @@ from typing import Optional
 
 import typer
 from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+
+from evidencepack.inventory import write_inventory
+from evidencepack.scanner import scan_directory
 
 DISCLAIMER = (
     "EvidencePack is for evidence organisation and pre-review only; "
@@ -17,7 +22,7 @@ app = typer.Typer(
         f"{DISCLAIMER}"
     )
 )
-console = Console()
+console = Console(width=140)
 
 
 @app.command()
@@ -27,12 +32,49 @@ def scan(
     threshold: float = 0.6,
     stale_days: int = 90,
     no_llm: bool = False,
+    output_dir: Path = Path("output"),
 ) -> None:
-    """Placeholder for scanning evidence folders."""
+    """Scan an evidence folder and write inventory.json."""
+    _ = controls, threshold
+    try:
+        records = scan_directory(folder, stale_days=stale_days)
+        inventory_file = write_inventory(records, output_dir=output_dir)
+    except (FileNotFoundError, NotADirectoryError, OSError) as exc:
+        console.print(f"[bold red]Scan failed:[/bold red] {exc}")
+        raise typer.Exit(code=1) from None
+
+    table = Table(title="Evidence Inventory")
+    table.add_column("File", no_wrap=True)
+    table.add_column("Type", no_wrap=True)
+    table.add_column("Size Bytes", justify="right")
+    table.add_column("Modified", no_wrap=True)
+    table.add_column("Status", no_wrap=True)
+    table.add_column("Metadata")
+
+    for record in records:
+        metadata = ", ".join(f"{key}={value}" for key, value in record.metadata.items())
+        table.add_row(
+            record.path,
+            record.file_type.value,
+            str(record.size_bytes),
+            record.modified_at.isoformat(timespec="seconds"),
+            record.status.value,
+            metadata or "-",
+        )
+
+    console.print(table)
     console.print(
-        "[bold cyan]Scan placeholder[/bold cyan]: "
-        f"folder={folder}, controls={controls}, threshold={threshold}, "
-        f"stale_days={stale_days}, no_llm={no_llm}"
+        Panel(
+            "\n".join(
+                [
+                    f"Total files: {len(records)}",
+                    f"Inventory: {inventory_file}",
+                    f"Stale threshold: {stale_days} days",
+                    f"LLM disabled: {no_llm}",
+                ]
+            ),
+            title="Scan Complete",
+        )
     )
 
 
@@ -68,4 +110,3 @@ def demo() -> None:
 
 if __name__ == "__main__":
     app()
-
