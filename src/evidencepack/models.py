@@ -51,6 +51,16 @@ class MatchMethod(str, Enum):
     BOTH = "both"
 
 
+class ChunkType(str, Enum):
+    """Supported extracted evidence chunk types."""
+
+    TEXT = "text"
+    TABLE = "table"
+    SHEET = "sheet"
+    CSV = "csv"
+    DOCX_PARAGRAPH = "docx_paragraph"
+
+
 @dataclass
 class FileRecord:
     """Metadata and extraction state for one evidence file."""
@@ -123,8 +133,46 @@ class ControlCitation:
         return serialize_model(self)
 
 
+@dataclass
+class ExtractedChunk:
+    """A normalized text or table chunk extracted from one evidence file."""
+
+    file_path: str
+    filename: str
+    file_type: FileType
+    chunk_type: ChunkType
+    source_ref: str
+    text: str = ""
+    table: list[list[Any]] | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a JSON-safe dictionary representation."""
+        return serialize_model(self)
+
+
+@dataclass
+class ExtractionResult:
+    """Normalized extraction output for one evidence file."""
+
+    file_path: str
+    filename: str
+    file_type: FileType
+    chunks: list[ExtractedChunk] = field(default_factory=list)
+    extracted_at: datetime = field(default_factory=datetime.now)
+    status: FileStatus = FileStatus.EXTRACTED
+    error: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a JSON-safe dictionary representation."""
+        return serialize_model(self)
+
+
 def serialize_model(value: Any) -> Any:
     """Recursively convert EvidencePack models into JSON-safe values."""
+    if value is None:
+        return None
     if is_dataclass(value) and not isinstance(value, type):
         return serialize_model(asdict(value))
     if isinstance(value, Enum):
@@ -150,3 +198,27 @@ def ensure_confidence(value: float) -> float:
         raise ValueError("confidence must be between 0.0 and 1.0")
     return confidence
 
+
+def chunk_text_for_matching(chunk: ExtractedChunk) -> str:
+    """Return searchable text for keyword matching from an extracted chunk."""
+    if chunk.text.strip():
+        return chunk.text
+    if not chunk.table:
+        return ""
+
+    lines = []
+    for row in chunk.table:
+        cells = [str(cell).strip() for cell in row if cell is not None and str(cell).strip()]
+        if cells:
+            lines.append(" | ".join(cells))
+    return "\n".join(lines)
+
+
+def extraction_result_text(result: ExtractionResult) -> str:
+    """Return combined searchable text from all non-empty extraction chunks."""
+    chunks = [
+        text
+        for text in (chunk_text_for_matching(chunk) for chunk in result.chunks)
+        if text.strip()
+    ]
+    return "\n".join(chunks)
