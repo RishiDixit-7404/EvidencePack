@@ -1,0 +1,6 @@
+Ticket ID,Type,Date,Status,Description
+IT-2026-0301,Access request,2026-03-02,Closed,Provision standard finance application access for Alex Chen.
+IT-2026-0314,Termination,2026-03-10,Closed,Disable access for Taylor Morgan within the 24-hour SLA.
+IT-2026-0320,Incident,2026-03-18,Closed,Investigate repeated failed login attempts for service portal.
+IT-2026-0328,Change request,2026-03-24,Approved,Update firewall allowlist for approved vendor integration.
+IT-2026-0331,Access request,2026-03-29,Open,Request read-only reporting access for Operations Reviewer.

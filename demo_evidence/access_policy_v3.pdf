@@ -1,0 +1,168 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 696 >>
+stream
+BT
+/F1 11 Tf
+50 760 Td
+14 TL
+(EvidencePack Demo Company) Tj
+T*
+(User Access Policy v3) Tj
+T*
+(Effective Date: 2026-01-01) Tj
+T*
+() Tj
+T*
+(Purpose) Tj
+T*
+(This policy defines synthetic access governance requirements for demo use.) Tj
+T*
+(Access must be granted according to approved job responsibilities.) Tj
+T*
+(Managers are accountable for confirming that access remains appropriate.) Tj
+T*
+() Tj
+T*
+(Quarterly Access Review) Tj
+T*
+(Application owners perform a quarterly access review for all in-scope systems.) Tj
+T*
+(Review evidence includes reviewer name, review date, exceptions, and remediation.) Tj
+T*
+(Privileged accounts are reviewed separately and require explicit sign-off.) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 622 >>
+stream
+BT
+/F1 11 Tf
+50 760 Td
+14 TL
+(Joiner, Mover, Leaver Requirements) Tj
+T*
+() Tj
+T*
+(New access requests require an approved ticket before provisioning.) Tj
+T*
+(Role changes require manager approval and removal of unnecessary prior access.) Tj
+T*
+(Terminated user access must be removed within 24 hours of HR notification.) Tj
+T*
+(The service desk records the termination access removal SLA in the ticket notes.) Tj
+T*
+() Tj
+T*
+(Exceptions) Tj
+T*
+(Any extension for legal hold or investigation must be documented by Security.) Tj
+T*
+(Shared accounts are prohibited unless approved by the Information Security Lead.) Tj
+T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 568 >>
+stream
+BT
+/F1 11 Tf
+50 760 Td
+14 TL
+(Administrative Access) Tj
+T*
+() Tj
+T*
+(Administrative access is limited to authorized support personnel.) Tj
+T*
+(Privileged access assignments require business justification and owner approval.) Tj
+T*
+(Administrators must use named accounts and may not share credentials.) Tj
+T*
+(Access logs are retained for monitoring and incident response.) Tj
+T*
+() Tj
+T*
+(Monitoring) Tj
+T*
+(Security reviews unusual login activity and escalates suspected misuse.) Tj
+T*
+(Incident tickets document triage, containment, and final resolution.) Tj
+T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 534 >>
+stream
+BT
+/F1 11 Tf
+50 760 Td
+14 TL
+(Password Policy) Tj
+T*
+() Tj
+T*
+(Passwords must contain at least twelve characters.) Tj
+T*
+(Passwords must include complexity across letters, numbers, and symbols.) Tj
+T*
+(Default passwords must be changed before production use.) Tj
+T*
+(Accounts lock after repeated failed authentication attempts.) Tj
+T*
+(Password reset requests require identity verification by the service desk.) Tj
+T*
+() Tj
+T*
+(Policy Maintenance) Tj
+T*
+(This policy is reviewed annually and after material control changes.) Tj
+T*
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000140 00000 n 
+0000000210 00000 n 
+0000000956 00000 n 
+0000001082 00000 n 
+0000001754 00000 n 
+0000001880 00000 n 
+0000002498 00000 n 
+0000002624 00000 n 
+0000003209 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+3337
+%%EOF

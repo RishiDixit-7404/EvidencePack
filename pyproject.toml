@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidencepack"
+version = "0.1.0"
+description = "Local-first audit evidence binder CLI and MCP server."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "typer",
+    "rich",
+    "pandas",
+    "openpyxl",
+    "pdfplumber",
+    "python-docx",
+    "mcp",
+    "httpx",
+    "pydantic",
+    "python-dotenv",
+    "Pillow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.scripts]
+evidencepack = "evidencepack.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
